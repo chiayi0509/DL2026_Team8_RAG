@@ -8,19 +8,6 @@
 2.實現跨語言精準對答： 使用者可直接使用繁體中文提問，系統會自動在後台進行英語翻譯、雲端向量資料庫語意檢索，並嚴格根據文獻內容，回傳流暢且附帶專業術語對照的繁體中文解答。
 3.實作多策略對比實驗： 本專案分別實作了RAG_Version_B與RAG_Version_A兩套系統。
 ## 2. 檔案說明
-第八組/
-├── README.md                                       # 本說明文件（即本檔案）
-├── 深度RAG.ppt
-├── RAG專案報告.pdf
-│
-├── 專案程式碼/
-│   ├── RAG_Version_A.ipynb        
-│   └── RAG_Version_B.ipynb
-└── Demo成果/ (團隊實際執行之成果紀錄)
-    ├── RAG_Version_A_demo影片.mp4                  # 系統一 互動運作錄影
-    ├── RAG_Version_A_demo圖片.jpg                  # 系統一 問答結果截圖
-    ├── RAG_Version_B_demo影片.mp4                  # 系統二 互動運作錄影
-    └── RAG_Version_B_demo圖片.jpg                  # 系統二 問答結果截圖
 系統架構與演算法對比
 RAG_Version_A:改用本機端 all-distilroberta-v1 模型（維度 768），並透過 MultipleNegativesRankingLoss 對文獻文本進行 3 個 Epochs 的領域適應強化訓練。同時加入了「父子區塊邏輯 」、「大幅度重疊切片 」與「Metadata 實驗結果標籤化」，解決了傳統 RAG 容易在語意檢索中漏掉特定圖表與硬數據的缺陷。
 RAG_Version_B:採用全新的 google-genai 官方 SDK，搭配萬用端點 models/gemini-embedding-2（輸出維度 3072）。核心特色在於實作了強健的異常捕獲機制，能自動攔截免費版 API 的 429 配額超限錯誤並自動掛起倒數，確保系統在現場 Demo 流程中具備極高的不中斷防禦力。
