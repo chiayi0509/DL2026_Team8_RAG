@@ -54,6 +54,7 @@ RAG_Version_B:採用全新的 google-genai 官方 SDK，搭配萬用端點 model
 
 6.對話 Demo： 在下方彈出的輸入框中直接輸入繁體中文問題，系統即會跨語言檢索並輸出流暢解答。輸入 exit 即可安全關閉問答迴圈。
 #資料集提供範例連結
+
 https://ieeexplore.ieee.org/document/11385136
 
 https://ieeexplore.ieee.org/document/10942952
