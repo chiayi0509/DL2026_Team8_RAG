@@ -8,8 +8,9 @@
 2.實現跨語言精準對答： 使用者可直接使用繁體中文提問，系統會自動在後台進行英語翻譯、雲端向量資料庫語意檢索，並嚴格根據文獻內容，回傳流暢且附帶專業術語對照的繁體中文解答。
 3.實作多策略對比實驗： 本專案分別實作了RAG_Version_B與RAG_Version_A兩套系統。
 ## 2. 檔案說明
-系統架構與演算法對比
+系統架構與演算法對比:
 RAG_Version_A:改用本機端 all-distilroberta-v1 模型（維度 768），並透過 MultipleNegativesRankingLoss 對文獻文本進行 3 個 Epochs 的領域適應強化訓練。同時加入了「父子區塊邏輯 」、「大幅度重疊切片 」與「Metadata 實驗結果標籤化」，解決了傳統 RAG 容易在語意檢索中漏掉特定圖表與硬數據的缺陷。
+
 RAG_Version_B:採用全新的 google-genai 官方 SDK，搭配萬用端點 models/gemini-embedding-2（輸出維度 3072）。核心特色在於實作了強健的異常捕獲機制，能自動攔截免費版 API 的 429 配額超限錯誤並自動掛起倒數，確保系統在現場 Demo 流程中具備極高的不中斷防禦力。
 ## 3.使用方法
 模式一：運行 RAG_Version_A.ipynb
@@ -22,6 +23,7 @@ RAG_Version_B:採用全新的 google-genai 官方 SDK，搭配萬用端點 model
 6.Metadata 標籤化與父子上下文：系統自動掃描包含關鍵字的區塊，打上 Experiment_Results 標籤，並自動綁定前後文作為父文本。
 7.高召回檢索 Demo： 於最下方的提問對話框中輸入中文問題。
 8.系統會自動擴大檢索範圍至 Top-K=20，優先過濾實驗標籤段落，由 LLM 產出高精確、不產生幻覺的學術級中文解答。
+
 模式二:運行 RAG_Version_B.ipynb
 1.環境準備： 在 Colab 儲存格中安裝正確命名的新版套件
 !pip install -qU pypdf pinecone google-genai google-generativeai
