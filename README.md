@@ -56,3 +56,5 @@ RAG_Version_B:採用全新的 google-genai 官方 SDK，搭配萬用端點 model
 #資料集提供範例連結
 https://ieeexplore.ieee.org/document/11385136
 
+https://ieeexplore.ieee.org/document/10942952
+
